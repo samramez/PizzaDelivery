@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Y"
+        android:text="@string/x"
+        android:layout_margin="20dp"
+        />
+
+    <EditText
+        android:id="@+id/x_cordinate_edit_text"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@color/white"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="X"
+        android:text="@string/y"
+        android:layout_margin="20dp"
+        />
+
+    <EditText
+        android:id="@+id/y_cordinate_edit_text"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@color/white"
+        />
+
+    <ImageButton
+        android:id="@+id/deleteRowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close_black_24dp"
+        android:background="@color/light_grey"
+        android:layout_marginStart="40dp"
+        />
+
+</LinearLayout>

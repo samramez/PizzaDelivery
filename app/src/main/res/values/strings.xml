@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PizzaDelivery</string>
+    <string name="x">X :</string>
+    <string name="y">Y :</string>
+</resources>
