@@ -11,15 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class AddCoordinateDialog extends DialogFragment {
 
     @BindView(R.id.x_edit_text) EditText xEditText;
     @BindView(R.id.y_edit_text) EditText yEditText;
+
+    private OnAddNewItemListener listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,36 +38,36 @@ public class AddCoordinateDialog extends DialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
-        getDialog().getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        if (getDialog().getWindow() != null) {
+            getDialog().getWindow().setSoftInputMode(
+                    WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        }
     }
 
-    /*@Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        String title = getArguments().getString("title");
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        alertDialogBuilder.setTitle(title);
-        alertDialogBuilder.setMessage("Are you sure?");
-        alertDialogBuilder.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // on success
-            }
-        });
-        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (dialog != null) {
-                    dialog.dismiss();
-                }
-            }
+    @OnClick(R.id.cancel) void onCancelClicked() {
+        getDialog().dismiss();
+    }
 
-        });
+    @OnClick(R.id.add) void onAddClicked() {
 
-        return alertDialogBuilder.create();
-    }*/
+        if (xEditText.getText().toString().isEmpty() || yEditText.getText().toString().isEmpty()) {
+            Toast.makeText(getContext(), "Fields cannot be empty", Toast.LENGTH_LONG).show();
+            return;
+        }
+        int x =  Integer.valueOf(xEditText.getText().toString());
+        int y =  Integer.valueOf(yEditText.getText().toString());
 
+        listener.onAddItemListener(x, y);
+
+        getDialog().dismiss();
+    }
+
+    public void setListener(OnAddNewItemListener listener) {
+        this.listener = listener;
+    }
+
+    interface OnAddNewItemListener {
+        void onAddItemListener(int x, int y);
+    }
 
 }

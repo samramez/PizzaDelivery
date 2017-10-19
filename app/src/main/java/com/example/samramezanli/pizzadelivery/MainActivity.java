@@ -16,7 +16,7 @@ import butterknife.OnClick;
 
 import static com.example.samramezanli.pizzadelivery.Direction.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AddCoordinateDialog.OnAddNewItemListener {
 
     @BindView(R.id.recyclerView) RecyclerView recycleView;
     @BindView(R.id.add_row_button) ImageButton addRowButton;
@@ -67,13 +67,17 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.add_row_button) void addRowButton() {
         showAddValueDialog();
-        //adapter.add(new Coordinate(0,0));
     }
 
     private void showAddValueDialog() {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        AddCoordinateDialog editNameDialogFragment = new AddCoordinateDialog();
-        editNameDialogFragment.show(fragmentManager, AddCoordinateDialog.class.getSimpleName());
+        AddCoordinateDialog addNewCoordinateDialogFragment = new AddCoordinateDialog();
+        addNewCoordinateDialogFragment.setListener(this);
+        addNewCoordinateDialogFragment.show(fragmentManager, AddCoordinateDialog.class.getSimpleName());
     }
 
+    @Override
+    public void onAddItemListener(int x, int y) {
+        adapter.add(new Coordinate(x,y));
+    }
 }
