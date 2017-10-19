@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/header_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textSize="26sp"
+        android:text="@string/add_coordinates"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="30dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_margin="30dp"
+        >
+
+        <EditText
+            android:id="@+id/x_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/x"
+            android:textSize="20sp"
+            android:padding="20dp"
+            android:inputType="number"
+            android:maxLength="1"
+            />
+
+        <EditText
+            android:id="@+id/y_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:hint="@string/y"
+            android:textSize="20sp"
+            android:padding="20dp"
+            android:inputType="number"
+            android:maxLength="1"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="30dp"
+        >
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            />
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="@string/add"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -18,12 +18,11 @@
         style="@style/ListItemStyle"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/x_cordinate_edit_text"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/x_text"
-        android:inputType="number"
         android:maxLength="1"
         android:layout_centerVertical="true"
         style="@style/ListItemStyle.EditText"
@@ -41,7 +40,7 @@
         style="@style/ListItemStyle"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/y_cordinate_edit_text"
         android:layout_width="20dp"
         android:layout_height="wrap_content"
@@ -50,7 +49,7 @@
         />
 
     <ImageButton
-        android:id="@+id/deleteRowButton"
+        android:id="@+id/delete_row_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

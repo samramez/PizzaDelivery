@@ -1,5 +1,6 @@
 package com.example.samramezanli.pizzadelivery;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -52,18 +53,27 @@ public class MainActivity extends AppCompatActivity {
             int y = destCoordinate.getYValue() - currentCoordinate.getYValue();
 
             if (x == 0 && y == 0) {
-
                 result += DROP;
-
-            } else {
+            }
+            else {
                 result = getXDirection(result, x);
                 result = getYDirection(result, y);
                 result += DROP;
             }
-
             currentCoordinate.setCoordinate(destCoordinate.getXValue(), destCoordinate.getYValue());
         }
         resultText.setText(result);
-
     }
+
+    @OnClick(R.id.add_row_button) void addRowButton() {
+        showAddValueDialog();
+        //adapter.add(new Coordinate(0,0));
+    }
+
+    private void showAddValueDialog() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        AddCoordinateDialog editNameDialogFragment = new AddCoordinateDialog();
+        editNameDialogFragment.show(fragmentManager, AddCoordinateDialog.class.getSimpleName());
+    }
+
 }

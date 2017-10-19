@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -37,15 +37,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ListViewHolder holder, int position) {
+    public void onBindViewHolder(final ListViewHolder holder, final int position) {
 
         Coordinate coordinate = coordinates.get(position);
 
-        Log.e("##", "X: " + coordinate.getXValue() + " Y: " + coordinate.getYValue());
+        holder.xValueText.setText(String.valueOf(coordinate.getXValue()));
 
+        holder.yValueText.setText(String.valueOf(coordinate.getYValue()));
 
-        holder.xValueEditText.setText(String.valueOf(coordinate.getXValue()));
-        holder.yValueEditText.setText(String.valueOf(coordinate.getYValue()));
+        handleDeleteButton(holder);
     }
 
     @Override
@@ -62,14 +62,37 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
         return coordinates;
     }
 
+    void add(Coordinate coordinate) {
+        coordinates.add(coordinate);
+        notifyItemInserted(coordinates.size());
+    }
+
+    private void handleDeleteButton(final ListViewHolder holder) {
+        holder.deleteRowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("##", "coordinates.size() before: " + coordinates.size());
+                int position = holder.getAdapterPosition();
+                coordinates.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, coordinates.size());
+                Log.e("##", "coordinates.size() after: " + coordinates.size());
+            }
+        });
+    }
+
+
     public class ListViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.x_cordinate_edit_text) EditText xValueEditText;
-        @BindView(R.id.y_cordinate_edit_text) EditText yValueEditText;
+        @BindView(R.id.x_cordinate_edit_text) TextView xValueText;
+        @BindView(R.id.y_cordinate_edit_text) TextView yValueText;
+        @BindView(R.id.delete_row_button) ImageButton deleteRowButton;
 
         public ListViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
     }
+
 }
