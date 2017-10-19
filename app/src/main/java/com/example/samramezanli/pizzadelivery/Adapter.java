@@ -2,6 +2,7 @@ package com.example.samramezanli.pizzadelivery;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +31,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
 
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View contactView = inflater.inflate(R.layout.item_recyclerview, parent, false);
+        View view = inflater.inflate(R.layout.item_recyclerview, parent, false);
 
-        return new ListViewHolder(contactView);
+        return new ListViewHolder(view);
     }
 
     @Override
@@ -40,8 +41,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
 
         Coordinate coordinate = coordinates.get(position);
 
-        holder.xValueEditText.setText(coordinate.getXValue(), TextView.BufferType.EDITABLE);
-        holder.yValueEditText.setText(coordinate.getYValue(), TextView.BufferType.EDITABLE);
+        Log.e("##", "X: " + coordinate.getXValue() + " Y: " + coordinate.getYValue());
+
+
+        holder.xValueEditText.setText(String.valueOf(coordinate.getXValue()));
+        holder.yValueEditText.setText(String.valueOf(coordinate.getYValue()));
     }
 
     @Override
@@ -54,15 +58,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
         return position;
     }
 
+    public List<Coordinate> getCoordinates() {
+        return coordinates;
+    }
 
-    class ListViewHolder extends RecyclerView.ViewHolder {
+    public class ListViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.x_cordinate_edit_text)
-        EditText xValueEditText;
-        @BindView(R.id.y_cordinate_edit_text)
-        EditText yValueEditText;
+        @BindView(R.id.x_cordinate_edit_text) EditText xValueEditText;
+        @BindView(R.id.y_cordinate_edit_text) EditText yValueEditText;
 
-        ListViewHolder(View itemView) {
+        public ListViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

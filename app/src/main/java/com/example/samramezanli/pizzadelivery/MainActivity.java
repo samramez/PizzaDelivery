@@ -11,6 +11,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+import static com.example.samramezanli.pizzadelivery.Direction.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +38,32 @@ public class MainActivity extends AppCompatActivity {
         recycleView.setAdapter(adapter);
 
         recycleView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @OnClick(R.id.get_result_buttn) void getResult() {
+
+        String result = "";
+        Coordinate currentCoordinate = new Coordinate(0,0);
+        List<Coordinate> coordinates = adapter.getCoordinates();
+
+        for (Coordinate destCoordinate : coordinates) {
+
+            int x = destCoordinate.getXValue() - currentCoordinate.getXValue();
+            int y = destCoordinate.getYValue() - currentCoordinate.getYValue();
+
+            if (x == 0 && y == 0) {
+
+                result += DROP;
+
+            } else {
+                result = getXDirection(result, x);
+                result = getYDirection(result, y);
+                result += DROP;
+            }
+
+            currentCoordinate.setCoordinate(destCoordinate.getXValue(), destCoordinate.getYValue());
+        }
+        resultText.setText(result);
 
     }
 }

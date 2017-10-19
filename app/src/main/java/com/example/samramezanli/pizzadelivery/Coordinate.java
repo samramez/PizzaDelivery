@@ -22,10 +22,14 @@ public class Coordinate {
         return yValue;
     }
 
+    public void setCoordinate(int x, int y) {
+        this.xValue = x;
+        this.yValue = y;
+    }
+
     public static List<Coordinate> getTestCoordinates() {
 
         List<Coordinate> coordinates = new ArrayList<>();
-        coordinates.add(new Coordinate(0, 0));
         coordinates.add(new Coordinate(1, 3));
         coordinates.add(new Coordinate(4, 4));
         coordinates.add(new Coordinate(4, 2));
